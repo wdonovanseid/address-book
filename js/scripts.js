@@ -36,7 +36,7 @@ AddressBook.prototype.deleteContact = function(id) {
   return false;
 }
 
-function Contact(firstName, lastName, phonenumber) {
+function Contact(firstName, lastName, phoneNumber) {
   this.firstName = firstName;
   this.lastName = lastName;
   this.phoneNumber = phoneNumber;
@@ -46,8 +46,21 @@ Contact.prototype.fullName = function() {
   return this.firstName + " " + this.lastName;
 }
 
+Contact.prototype.update = function(contact, firstName, lastName, phoneNumber) {
+  if (contact) {
+    contact.firstName = firstName;
+    contact.lastName = lastName;
+    contact.phoneNumber = phoneNumber;
+    return true;
+  }
+  return false;
+}
+
 let addressBook = new AddressBook();
 let contact = new Contact("Ada", "Lovelace", "503-555-0100");
 let contact2 = new Contact("Grace", "Hopper", "503-555-0199");
 addressBook.addContact(contact);
 addressBook.addContact(contact2);
+contact.update(contact2, "Will", "DS", "999")
+console.log(contact)
+console.log(contact2)
