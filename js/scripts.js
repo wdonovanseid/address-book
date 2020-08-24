@@ -58,6 +58,15 @@ Contact.prototype.update = function(contact, firstName, lastName, phoneNumber) {
 
 let addressBook = new AddressBook();
 
+function displayContactDetails(addressBookToDisplay) {
+  let contactsList = $("ul#contacts");
+  let htmlForContactInfo = "";
+  addressBookToDisplay.contacts.forEach(function(contact) {
+    htmlForContactInfo += "<li id=" + contact.id + ">" + contact.firstName + " " + contact.lastName + "</li>";
+  });
+  contactsList.html(htmlForContactInfo);
+}
+
 $(document).ready(function() {
   $("form#new-contact").submit(function(event) {
     event.preventDefault();
@@ -66,6 +75,6 @@ $(document).ready(function() {
     const inputtedPhoneNumber = $("input#new-phone-number").val();
     let newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber);
     addressBook.addContact(newContact);
-    console.log(addressBook.contacts);
+    displayContactDetails(addressBook);
   })
 })
